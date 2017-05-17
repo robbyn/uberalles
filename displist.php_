@@ -1,0 +1,54 @@
+<?php
+    require_once 'ws/mail.php';
+
+    $mysql = connect_db();
+    $user = authenticate_admin($mysql);
+    if ($user) {
+?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <?php
+        $disposable_domains = disposable_email_domains();
+        $smarty = create_smarty(NULL);
+        $users = active_users($mysql);
+        foreach ($users as $user) {
+            $email = $user["mal"];
+            $pos = strrpos($email, '@');
+            if ($pos === FALSE) {
+                continue;
+            }
+            $email_dom = substr($email, $pos+1);
+            if (in_array($email_dom, $disposable_domains)) {
+        ?>
+          <p><?php echo "Skipping disposable e-mail address: " . $email;?></p>
+        <?php
+            } else {
+                $mail = create_mailer();
+                $mail->From = MAIL_FROM;
+                $mail->FromName = MAIL_FROM_NAME;
+                $mail->addAddress($email, $user["usn"]);
+                $mail->Subject = "Les aventures de Lily et Robby";
+                $mail->ContentType = "text/html";
+                $mail->CharSet = "UTF-8";
+                $mail->Body = $smarty->fetch("announcement.html");
+                $mail->AltBody = $smarty->fetch("announcement.txt");
+                if ($mail->send()) { ?>
+                    <?php echo $email; ?> OK<br>
+            <?php
+                } else { ?>
+                    <?php echo $email; ?> KO<br>
+            <?php
+                }
+            }
+        }
+        ?>
+    </body>
+</html>
+<?php
+    }
+    mysqli_close($mysql);

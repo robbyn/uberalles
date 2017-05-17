@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="14px" height="14px" viewBox="0 0 14 14" enable-background="new 0 0 14 14" xml:space="preserve">
+<g>
+	<circle fill="#FFFFFF" cx="10.5" cy="2.5" r="2.5"/>
+	<circle fill="#FFFFFF" cx="10.5" cy="11.5" r="2.5"/>
+	<circle fill="#FFFFFF" cx="2.5" cy="7" r="2.5"/>
+	
+		<rect x="5.75" y="0.161" transform="matrix(0.4902 0.8716 -0.8716 0.4902 7.454 -3.2437)" fill="#FFFFFF" width="1.5" height="9.178"/>
+	
+		<rect x="1.911" y="8.5" transform="matrix(0.8716 0.4902 -0.4902 0.8716 5.3693 -1.9987)" fill="#FFFFFF" width="9.178" height="1.5"/>
+</g>
+</svg>

@@ -1,0 +1,11 @@
+@import url("style.css");
+
+#resultTable {
+    width: 100%;
+}
+#resultTable tr {
+    text-align: left;
+}
+#resultTable td[colspan]  {
+    text-align: center;
+}

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="gotaxi" default="minify" basedir=".">
+    <description>Builds and uploads the project gotaxi</description>
+
+    <target name="cleanup">
+        <delete dir="dist">
+            <include name="**"/>
+        </delete>
+    </target>
+
+    <target name="build" depends="cleanup">
+        <mkdir dir="dist" />
+        <copy todir="dist">
+            <fileset dir=".">
+                <include name="**"/>
+                <exclude name="dist/**"/>
+                <exclude name="build/**"/>
+                <exclude name="nbproject/**"/>
+                <exclude name="org/**"/>
+                <exclude name="etc/**"/>
+                <exclude name="env/**"/>
+                <exclude name="build*"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="minify-all" depends="build">
+        <!-- minify js -->
+        <!-- antcall target="minify">
+            <param name="file" value="js/call.js"/>
+        </antcall -->
+        <!-- antcall target="minify">
+            <param name="file" value="js/take.js"/>
+        </antcall -->
+        <antcall target="minify">
+            <param name="file" value="js/palmares.js"/>
+        </antcall>
+        <!-- antcall target="minify">
+            <param name="file" value="js/reg.js"/>
+        </antcall -->
+        <antcall target="minify">
+            <param name="file" value="js/handlebars.js"/>
+        </antcall>
+    </target>
+
+    <target name="minify">
+        <echo message="Minifying ${file}"/>
+        <java jar="build/yuicompressor-2.4.7.jar" fork="true">
+            <arg value="--charset"/>
+            <arg value="UTF-8"/>
+            <arg value="-v"/>
+            <arg value="-o"/>
+            <arg file="dist/${file}"/>
+            <arg file="${file}"/>
+        </java>
+    </target>
+
+    <target name="sass-all" depends="build">
+        <antcall target="sass">
+            <param name="name" value="style"/>
+        </antcall>
+        <antcall target="sass">
+            <param name="name" value="palmares"/>
+        </antcall>
+        <antcall target="sass">
+            <param name="name" value="tutorial"/>
+        </antcall>
+    </target>
+
+    <target name="sass">
+        <echo message="Preprocessing CSS ${name}"/>
+        <exec executable="/usr/bin/sass">
+            <arg value="--no-cache"/>
+            <arg value="--force"/>
+            <arg value="--scss"/>
+            <arg value="--default-encoding"/>
+            <arg value="UTF-8"/>
+            <arg value="--style"/>
+            <arg value="compressed"/>
+            <arg value="scss/${name}.scss"/>
+            <arg value="dist/css/${name}.css"/>
+        </exec>
+    </target>
+
+    <target name="upload-dev" depends="sass-all">
+        <copy todir="dist" overwrite="true">
+            <fileset dir="env/dev"/>
+        </copy>
+        <ftp server="ftp.gotaxi.ch" userid="mpgotaxi" password="axel1966"
+                remotedir="/web/dev/" retriesAllowed="2" passive="yes"
+                verbose="yes">
+            <fileset dir="dist" />
+        </ftp>
+        <antcall target="cleanup"/>
+    </target>
+
+    <target name="upload-gotaxi" depends="sass-all,minify-all">
+        <copy todir="dist" overwrite="true">
+            <fileset dir="env/gotaxi"/>
+        </copy>
+        <ftp server="ftp.gotaxi.ch" userid="mpgotaxi" password="axel1966"
+                remotedir="/web/" retriesAllowed="2" passive="yes"
+                verbose="yes">
+            <fileset dir="dist" />
+        </ftp>
+        <antcall target="cleanup"/>
+    </target>
+
+    <target name="upload-bluecab" depends="sass-all,minify-all">
+        <copy todir="dist" overwrite="true">
+            <fileset dir="env/bluecab"/>
+        </copy>
+        <ftp server="ftp.bluecab.ch" userid="mpbluecab" password="axel1966"
+                remotedir="/web/" retriesAllowed="2" passive="yes"
+                verbose="yes">
+            <fileset dir="dist" />
+        </ftp>
+        <antcall target="cleanup"/>
+    </target>
+
+    <target name="upload-uberalles" depends="sass-all,minify-all"
+            description="Upload uberalles">
+        <copy todir="dist" overwrite="true">
+            <fileset dir="env/uberalles"/>
+        </copy>
+        <ftp server="ftp.uberalles.ch" userid="mpbluecab" password="axel1966"
+                remotedir="/web/" retriesAllowed="2" passive="yes"
+                verbose="yes">
+            <fileset dir="dist" />
+        </ftp>
+        <antcall target="cleanup"/>
+    </target>
+</project>

@@ -1,0 +1,89 @@
+.robby {
+  margin: 0;
+  padding: 0;
+  background-color: #EAFFA6;
+  color: #000000;
+  text-shadow: 0 1px 0 #CCCCCC; }
+  .robby figure {
+    margin: 0;
+    padding: 1em; }
+    @media (max-width: 200px) {
+      .robby figure {
+        display: none; } }
+    @media (min-width: 300px) {
+      .robby figure {
+        float: left; } }
+    .robby figure img {
+      width: 160px;
+      height: 240px; }
+      @media (min-width: 760px) {
+        .robby figure img {
+          width: 320px;
+          height: 480px; } }
+  .robby div {
+    margin: 0;
+    padding: 0.5em 1em; }
+    .robby div p {
+      margin: 0;
+      padding: 0.5em 0;
+      line-height: 1; }
+  .robby::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0; }
+
+.lily {
+  margin: 0;
+  padding: 0;
+  background-color: #E3A6FF;
+  color: #000000;
+  text-shadow: 0 1px 0 #CCCCCC; }
+  .lily figure {
+    margin: 0;
+    padding: 1em; }
+    @media (max-width: 200px) {
+      .lily figure {
+        display: none; } }
+    @media (min-width: 300px) {
+      .lily figure {
+        float: right; } }
+    .lily figure img {
+      width: 160px;
+      height: 240px; }
+      @media (min-width: 760px) {
+        .lily figure img {
+          width: 320px;
+          height: 480px; } }
+  .lily div {
+    margin: 0;
+    padding: 0.5em 1em; }
+    .lily div p {
+      margin: 0;
+      padding: 0.5em 0;
+      line-height: 1; }
+  .lily::after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0; }
+
+@media (min-width: 760px) {
+  .ui-page {
+    width: 40em !important;
+    margin: 0 auto !important;
+    position: relative !important; }
+
+  .ui-header {
+    width: 40em !important;
+    margin: 0 auto !important; }
+
+  .ui-footer {
+    width: 40em !important;
+    margin: 0 auto !important; } }
+
+/*# sourceMappingURL=tutorial.css.map */

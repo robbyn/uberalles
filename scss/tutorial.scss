@@ -1,0 +1,63 @@
+@mixin row($f,$bg,$fg) {
+    margin: 0;
+    padding: 0;
+    background-color: $bg;
+    color: $fg;
+    text-shadow: 0 1px 0 #CCCCCC;
+    figure {
+        margin: 0;
+        padding: 1em;
+        @media (max-width: 200px){
+            display: none;
+        }
+        @media (min-width: 300px){
+            float: $f;
+        }
+        img {
+            width: 160px;
+            height: 240px;
+            @media (min-width: 760px){
+                width: 320px;
+                height: 480px;
+            }
+        }
+    }
+    div {
+        margin: 0;
+        padding: 0.5em 1em;
+        p {
+            margin: 0;
+            padding: 0.5em 0;
+            line-height: 1;
+        }
+    }
+    &::after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }
+}
+.robby {
+    @include row(left,#EAFFA6,#000000);
+}
+.lily {
+    @include row(right,#E3A6FF,#000000);
+}
+@media (min-width: 760px){
+    .ui-page {
+        width: 40em !important;
+        margin: 0 auto !important;
+        position: relative !important;
+    }
+    .ui-header {
+        width: 40em !important;
+        margin: 0 auto !important;
+    }
+    .ui-footer {
+        width: 40em !important;
+        margin: 0 auto !important;
+    }
+}

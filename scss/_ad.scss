@@ -1,0 +1,38 @@
+#ad-area {
+    position: relative;
+    width: 100%;
+}
+#bigrect {
+    display: none;
+    position: absolute;
+    width:336px;
+    height:280px;
+    top: 50%;
+    left: 50%;
+    margin-top: -140px;
+    margin-left: -168px;
+}
+#smallrect {
+    display: none;
+    position: absolute;
+    width:180px;
+    height:150px;
+    top: 50%;
+    left: 50%;
+    margin-top: -90px;
+    margin-left: -75px;
+}
+#bigrect {
+    display: none;
+}
+#smallrect {
+    display: block;
+}
+@media (min-width:340px) and (min-height:384px) {
+    #bigrect {
+        display: block;
+    }
+    #smallrect {
+        display: none;
+    }
+}

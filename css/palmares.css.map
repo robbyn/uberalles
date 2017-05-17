@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAQ,wBAAgB;AAExB,YAAa;EACT,KAAK,EAAE,IAAI;;AAEf,eAAgB;EACZ,UAAU,EAAE,IAAI;;AAEpB,wBAA0B;EACtB,UAAU,EAAE,MAAM",
+"sources": ["../scss/palmares.scss"],
+"names": [],
+"file": "palmares.css"
+}
